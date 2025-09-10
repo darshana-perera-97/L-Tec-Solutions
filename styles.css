@@ -1,0 +1,627 @@
+:root {
+    --neo-green: #39ff14;
+    --highlight-green: #39ff14;
+    --dark-bg: #000000;
+    --dark-secondary: #1a1a1a;
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--dark-bg) !important;
+    border-bottom: 2px solid var(--neo-green);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    color: var(--neo-green) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-light) !important;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--neo-green) !important;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--neo-green);
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-secondary) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    min-height: 90vh;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0 50px 0;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(57, 255, 20, 0.1) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--neo-green), var(--highlight-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+.hero-buttons {
+    margin-bottom: 2rem;
+}
+
+.btn-outline-neo {
+    border: 2px solid var(--neo-green);
+    color: var(--neo-green);
+    background: transparent;
+    padding: 12px 30px;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-outline-neo:hover {
+    background: var(--neo-green);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+}
+
+.hero-stats {
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    animation: countUp 2s ease-out forwards;
+    opacity: 0;
+}
+
+.stat-number:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.stat-number:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.stat-number:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hero Image Container */
+.hero-image-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 500px;
+}
+
+.hero-image-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.hero-image-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image-item.active {
+    opacity: 1;
+}
+
+.hero-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    filter: brightness(1.1) contrast(1.1);
+    object-fit: contain;
+}
+
+.hero-image:hover {
+    filter: brightness(1.2) contrast(1.2);
+}
+
+
+.btn-neo {
+    background: linear-gradient(45deg, var(--neo-green), var(--highlight-green));
+    border: none;
+    color: var(--dark-bg);
+    padding: 12px 30px;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-neo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+    color: var(--dark-bg);
+}
+
+/* Logo Carousel Section */
+.logo-section {
+    background: var(--dark-secondary);
+    overflow: hidden;
+}
+
+.logo-carousel {
+    display: flex;
+    animation: scroll 20s linear infinite;
+    white-space: nowrap;
+}
+
+.logo-item {
+    flex: 0 0 auto;
+    margin: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 80px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+}
+
+.logo-item:hover {
+    transform: scale(1.05);
+    box-shadow: none;
+}
+
+.logo-img {
+    max-width: 150px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: brightness(1.1) contrast(1.2);
+    transition: all 0.3s ease;
+}
+
+
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    background: linear-gradient(90deg, var(--dark-bg), transparent);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--neo-green);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: var(--neo-green);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .hero-content {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+        text-align: center;
+    }
+    
+    .hero-buttons .btn {
+        margin: 0.5rem;
+    }
+    
+    .hero-image-placeholder {
+        height: 300px;
+        padding: 2rem;
+    }
+    
+    .hero-placeholder-icon {
+        font-size: 3rem;
+    }
+    
+    .hero-placeholder-text {
+        font-size: 1.2rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .logo-item {
+        min-width: 150px;
+        height: 80px;
+        margin: 0 1.5rem;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+}
+
+/* Glow Effects */
+.glow {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 40px rgba(57, 255, 20, 0.3);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes countUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Products Section */
+.products-section {
+    background: var(--dark-bg);
+    padding: 6rem 0;
+    position: relative;
+}
+
+.products-heading {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 100;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.products-heading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neo-green), transparent);
+    z-index: -1;
+}
+
+.products-heading::after {
+    content: 'PRODUCTS';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--neo-green);
+    opacity: 0.1;
+    z-index: -1;
+    font-size: 8rem;
+    font-weight: 900;
+    letter-spacing: 12px;
+}
+
+/* Products Tabs */
+.products-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    gap: 1rem;
+}
+
+.tab-button {
+    background: transparent;
+    border: 2px solid var(--neo-green);
+    color: var(--text-light);
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tab-button:hover {
+    background: var(--neo-green);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
+}
+
+.tab-button.active {
+    background: var(--neo-green);
+    color: var(--dark-bg);
+    box-shadow: 0 5px 15px rgba(57, 255, 20, 0.4);
+}
+
+/* Tab Content */
+.tab-content {
+    position: relative;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Product Card */
+.product-card {
+    background: var(--dark-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(57, 255, 20, 0.2);
+    border-color: var(--neo-green);
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    background: var(--dark-bg);
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+    filter: brightness(1.2) contrast(1.2);
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--neo-green);
+    background: linear-gradient(45deg, var(--neo-green), var(--highlight-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive Design for Products */
+@media (max-width: 768px) {
+    .products-heading {
+        font-size: 3rem;
+        letter-spacing: 4px;
+    }
+    
+    .products-heading::after {
+        font-size: 4rem;
+        letter-spacing: 6px;
+    }
+    
+    .products-heading::before {
+        width: 150px;
+    }
+    
+    .products-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .tab-button {
+        width: 200px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .product-card {
+        margin: 0 1rem;
+    }
+}
