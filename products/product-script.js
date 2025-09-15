@@ -490,62 +490,69 @@ function initCustomerForm() {
         return label ? label.textContent.replace('*', '').trim() : field.name;
     }
 
-    function processOrder() {
+    async function processOrder() {
         const formData = new FormData(customerForm);
         const orderData = {
-            customer: {
-                firstName: formData.get('firstName'),
-                lastName: formData.get('lastName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                address: formData.get('address'),
-                city: formData.get('city'),
-                state: formData.get('state'),
-                zipCode: formData.get('zipCode'),
-                country: formData.get('country'),
-                paymentMethod: formData.get('paymentMethod'),
-                specialInstructions: formData.get('specialInstructions'),
-                newsletter: formData.get('newsletter') === 'on'
-            },
-            product: {
-                name: 'Gaming PC Pro',
-                quantity: parseInt(document.getElementById('summaryQuantity').textContent),
-                unitPrice: 1299,
-                totalPrice: parseFloat(document.getElementById('summaryTotal').textContent.replace('$', ''))
-            }
+            name: `${formData.get('firstName')} ${formData.get('lastName')}`,
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            product: 'Gaming PC Pro',
+            quantity: parseInt(document.getElementById('summaryQuantity').textContent),
+            message: `Address: ${formData.get('address')}, ${formData.get('city')}, ${formData.get('state')} ${formData.get('zipCode')}, ${formData.get('country')}\nPayment Method: ${formData.get('paymentMethod')}\nSpecial Instructions: ${formData.get('specialInstructions') || 'None'}\nNewsletter: ${formData.get('newsletter') === 'on' ? 'Yes' : 'No'}`
         };
 
         // Show processing state
         proceedToPaymentBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Processing...';
         proceedToPaymentBtn.disabled = true;
 
-        // Simulate API call
-        setTimeout(() => {
-            // Here you would typically send the data to your backend
-            console.log('Order Data:', orderData);
-            
-            // Show success message
-            showNotification('Order processed successfully! Redirecting to payment...', 'success');
-            
-            // Close modal and reset form
-            customerFormModal.hide();
-            customerForm.reset();
-            
+        try {
+            // Check if API utilities are available
+            if (typeof APIUtils === 'undefined') {
+                throw new Error('API utilities not loaded. Please make sure api.js is included.');
+            }
+
+            // Check backend status first
+            const status = await APIUtils.getConnectionStatus();
+            if (!status.backend) {
+                throw new Error('Backend server is not available. Please make sure the backend is running.');
+            }
+
+            if (!status.whatsapp) {
+                showNotification('WhatsApp service is not ready. Your inquiry will be processed when available.', 'warning');
+            }
+
+            // Submit the form using API utility
+            const result = await APIUtils.submitProductInquiry(orderData);
+
+            if (result.success) {
+                // Show success message
+                showNotification('Order submitted successfully! Our team has been notified and will contact you soon.', 'success');
+                
+                // Close modal and reset form
+                customerFormModal.hide();
+                customerForm.reset();
+                
+                // Clear validation states
+                const formInputs = customerForm.querySelectorAll('input, select, textarea');
+                formInputs.forEach(input => {
+                    input.classList.remove('is-valid', 'is-invalid');
+                });
+                
+                // Remove error messages
+                const errorMessages = customerForm.querySelectorAll('.invalid-feedback');
+                errorMessages.forEach(error => error.remove());
+            } else {
+                // Show error message
+                showNotification(result.error || 'Failed to submit order. Please try again.', 'error');
+            }
+        } catch (error) {
+            console.error('Error submitting order:', error);
+            showNotification(error.message || 'Network error. Please check your connection and try again.', 'error');
+        } finally {
             // Reset button
             proceedToPaymentBtn.innerHTML = '<i class="bi bi-credit-card me-2"></i>Proceed to Payment';
             proceedToPaymentBtn.disabled = false;
-            
-            // Clear validation states
-            const formInputs = customerForm.querySelectorAll('input, select, textarea');
-            formInputs.forEach(input => {
-                input.classList.remove('is-valid', 'is-invalid');
-            });
-            
-            // Remove error messages
-            const errorMessages = customerForm.querySelectorAll('.invalid-feedback');
-            errorMessages.forEach(error => error.remove());
-            
-        }, 2000);
+        }
     }
 }
 

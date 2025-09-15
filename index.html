@@ -38,6 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -164,16 +167,18 @@
                 <!-- Computers Tab -->
                 <div class="tab-pane active" id="computers">
                     <div class="products-grid">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://via.placeholder.com/300x200/39ff14/000000?text=Gaming+PC" alt="Gaming PC">
+                        <a href="products/gaming-pc.html" class="product-card-link">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x200/39ff14/000000?text=Gaming+PC" alt="Gaming PC">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Gaming PC</h3>
+                                    <p class="product-description">High-performance gaming desktop with latest graphics</p>
+                                    <div class="product-price">$1,299</div>
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Gaming PC</h3>
-                                <p class="product-description">High-performance gaming desktop with latest graphics</p>
-                                <div class="product-price">$1,299</div>
-                            </div>
-                        </div>
+                        </a>
                         
                         <div class="product-card">
                             <div class="product-image">
@@ -379,6 +384,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- API Utilities -->
+    <script src="api.js"></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
 </body>

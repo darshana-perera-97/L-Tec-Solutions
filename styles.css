@@ -625,3 +625,16 @@ body {
         margin: 0 1rem;
     }
 }
+
+/* Product Card Link Styles */
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.product-card-link:hover {
+    text-decoration: none;
+    color: inherit;
+    transform: translateY(-5px);
+}
