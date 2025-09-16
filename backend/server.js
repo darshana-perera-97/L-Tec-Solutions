@@ -5,14 +5,14 @@ const path = require('path');
 const WhatsAppClient = require('./whatsapp-client');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5555;
 
 // Initialize WhatsApp client
 const whatsappClient = new WhatsAppClient();
 
 // CORS configuration for separate frontend
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5500', 'http://127.0.0.1:5500', 'file://'],
+    origin: ['http://localhost:5555', 'http://127.0.0.1:5555', 'http://localhost:5500', 'http://127.0.0.1:5500', 'file://'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
