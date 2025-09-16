@@ -1,20 +1,102 @@
 // Product Page JavaScript Functionality
 
+// Global modal instance
+let customerFormModal = null;
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Product page DOM loaded, initializing...');
+    // Initialize modal first
+    initModal();
     // Initialize product page functionality
     initProductImageCarousel();
-    initQuantityControls();
     initProductActions();
     initRelatedProducts();
     initCustomerForm();
     console.log('Product page initialization complete');
 });
 
+// Initialize Modal
+function initModal() {
+    const customerFormModalElement = document.getElementById('customerFormModal');
+    
+    if (!customerFormModalElement) {
+        console.error('Customer form modal element not found');
+        return;
+    }
+    
+    console.log('Initializing modal...');
+    customerFormModal = new bootstrap.Modal(customerFormModalElement);
+    
+    // Ensure close buttons work properly
+    const closeButtons = customerFormModalElement.querySelectorAll('[data-bs-dismiss="modal"]');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Close button clicked');
+            customerFormModal.hide();
+        });
+    });
+    
+    // Also add click listeners for any buttons with class 'btn-close'
+    const closeButtonsByClass = customerFormModalElement.querySelectorAll('.btn-close');
+    closeButtonsByClass.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('X button clicked');
+            customerFormModal.hide();
+        });
+    });
+    
+    // Add click listener for Cancel button
+    const cancelButton = customerFormModalElement.querySelector('.btn-secondary[data-bs-dismiss="modal"]');
+    if (cancelButton) {
+        cancelButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Cancel button clicked');
+            customerFormModal.hide();
+        });
+    }
+    
+    // Handle modal close events
+    customerFormModalElement.addEventListener('hidden.bs.modal', function() {
+        console.log('Modal closed');
+        // Reset form when modal is closed
+        const customerForm = document.getElementById('customerForm');
+        if (customerForm) {
+            customerForm.reset();
+            // Clear validation states
+            const formInputs = customerForm.querySelectorAll('input, select, textarea');
+            formInputs.forEach(input => {
+                input.classList.remove('is-valid', 'is-invalid');
+            });
+            // Remove error messages
+            const errorMessages = customerForm.querySelectorAll('.invalid-feedback');
+            errorMessages.forEach(error => error.remove());
+        }
+    });
+    
+    // Handle backdrop click to close modal
+    customerFormModalElement.addEventListener('click', function(e) {
+        if (e.target === customerFormModalElement) {
+            console.log('Backdrop clicked, closing modal');
+            customerFormModal.hide();
+        }
+    });
+    
+    console.log('Modal initialized successfully');
+}
+
 // Product Image Carousel
 function initProductImageCarousel() {
     const images = document.querySelectorAll('.product-image-item');
     const dots = document.querySelectorAll('.dot');
+    
+    // If no carousel elements exist, skip carousel initialization
+    if (images.length === 0) {
+        console.log('No carousel elements found, skipping carousel initialization');
+        return;
+    }
+    
     let currentSlide = 0;
     let slideInterval;
 
@@ -79,14 +161,16 @@ function initProductImageCarousel() {
 
     const carousel = document.querySelector('.product-image-carousel');
     
-    carousel.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
+    if (carousel) {
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
 
-    carousel.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        handleSwipe();
-    });
+        carousel.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+    }
 
     function handleSwipe() {
         const swipeThreshold = 50;
@@ -107,66 +191,37 @@ function initProductImageCarousel() {
     startSlideShow();
 
     // Pause on hover
-    carousel.addEventListener('mouseenter', stopSlideShow);
-    carousel.addEventListener('mouseleave', startSlideShow);
-}
-
-// Quantity Controls
-function initQuantityControls() {
-    const decreaseBtn = document.getElementById('decrease');
-    const increaseBtn = document.getElementById('increase');
-    const quantityInput = document.getElementById('quantity');
-
-    decreaseBtn.addEventListener('click', () => {
-        let currentValue = parseInt(quantityInput.value);
-        if (currentValue > 1) {
-            quantityInput.value = currentValue - 1;
-            updateQuantityDisplay();
-        }
-    });
-
-    increaseBtn.addEventListener('click', () => {
-        let currentValue = parseInt(quantityInput.value);
-        if (currentValue < 10) {
-            quantityInput.value = currentValue + 1;
-            updateQuantityDisplay();
-        }
-    });
-
-    quantityInput.addEventListener('change', () => {
-        let value = parseInt(quantityInput.value);
-        if (value < 1) quantityInput.value = 1;
-        if (value > 10) quantityInput.value = 10;
-        updateQuantityDisplay();
-    });
-
-    function updateQuantityDisplay() {
-        // Add visual feedback for quantity change
-        quantityInput.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            quantityInput.style.transform = 'scale(1)';
-        }, 150);
+    if (carousel) {
+        carousel.addEventListener('mouseenter', stopSlideShow);
+        carousel.addEventListener('mouseleave', startSlideShow);
     }
 }
+
 
 // Product Actions
 function initProductActions() {
     const addToCartBtn = document.getElementById('addToCart');
     const buyNowBtn = document.getElementById('buyNow');
-    const customerFormModal = new bootstrap.Modal(document.getElementById('customerFormModal'));
 
-    addToCartBtn.addEventListener('click', () => {
-        const quantity = document.getElementById('quantity').value;
-        addToCart(quantity);
-    });
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', () => {
+            const quantity = document.getElementById('quantity') ? document.getElementById('quantity').value : 1;
+            addToCart(quantity);
+        });
+    }
 
-    buyNowBtn.addEventListener('click', () => {
-        console.log('Buy Now button clicked');
-        alert('Buy Now button clicked!'); // Temporary test
-        const quantity = document.getElementById('quantity').value;
-        updateOrderSummary(quantity);
-        customerFormModal.show();
-    });
+    if (buyNowBtn) {
+        buyNowBtn.addEventListener('click', () => {
+            console.log('Buy Now button clicked');
+            const quantity = document.getElementById('quantity') ? document.getElementById('quantity').value : 1;
+            updateOrderSummary(quantity);
+            if (customerFormModal) {
+                customerFormModal.show();
+            } else {
+                console.error('Modal not initialized');
+            }
+        });
+    }
 
     function addToCart(quantity) {
         // Add visual feedback
@@ -296,13 +351,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Add loading animation for images
 document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', function() {
-        this.style.opacity = '1';
-    });
-    
-    // Set initial opacity
-    img.style.opacity = '0';
-    img.style.transition = 'opacity 0.3s ease';
+    // Only apply loading animation to images that are not in product containers
+    // or are part of carousel items
+    if (!img.closest('.product-image-container') || img.classList.contains('product-image-item')) {
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        
+        // Set initial opacity only for carousel images
+        if (img.classList.contains('product-image-item')) {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+        }
+    }
 });
 
 // Add scroll animations
@@ -335,33 +396,18 @@ function initCustomerForm() {
     console.log('Initializing customer form...');
     const customerForm = document.getElementById('customerForm');
     const proceedToPaymentBtn = document.getElementById('proceedToPayment');
-    const customerFormModalElement = document.getElementById('customerFormModal');
     
     // Check if elements exist
-    if (!customerForm || !proceedToPaymentBtn || !customerFormModalElement) {
+    if (!customerForm || !proceedToPaymentBtn) {
         console.error('Customer form elements not found:', {
             customerForm: !!customerForm,
-            proceedToPaymentBtn: !!proceedToPaymentBtn,
-            customerFormModalElement: !!customerFormModalElement
+            proceedToPaymentBtn: !!proceedToPaymentBtn
         });
         return;
     }
     
-    console.log('Customer form elements found, creating modal...');
-    const customerFormModal = new bootstrap.Modal(customerFormModalElement);
+    console.log('Customer form elements found, setting up form...');
     
-    // Test modal creation
-    console.log('Modal created:', customerFormModal);
-    
-    // Add a test button to manually show the modal
-    const testButton = document.createElement('button');
-    testButton.textContent = 'Test Modal';
-    testButton.className = 'btn btn-warning mt-2';
-    testButton.onclick = () => {
-        console.log('Test button clicked, showing modal...');
-        customerFormModal.show();
-    };
-    document.querySelector('.product-actions').appendChild(testButton);
 
     // Form validation
     customerForm.addEventListener('submit', function(e) {
@@ -529,7 +575,9 @@ function initCustomerForm() {
                 showNotification('Order submitted successfully! Our team has been notified and will contact you soon.', 'success');
                 
                 // Close modal and reset form
-                customerFormModal.hide();
+                if (customerFormModal) {
+                    customerFormModal.hide();
+                }
                 customerForm.reset();
                 
                 // Clear validation states
