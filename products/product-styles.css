@@ -200,7 +200,7 @@
 
 .discount {
     background: #ff4444;
-    color: white;
+    color: white !important;
     padding: 5px 12px;
     border-radius: 15px;
     font-size: 0.9rem;
