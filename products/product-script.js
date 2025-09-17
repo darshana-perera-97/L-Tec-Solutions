@@ -206,16 +206,14 @@ function initProductActions() {
 
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', () => {
-            const quantity = document.getElementById('quantity') ? document.getElementById('quantity').value : 1;
-            addToCart(quantity);
+            addToCart();
         });
     }
 
     if (buyNowBtn) {
         buyNowBtn.addEventListener('click', () => {
             console.log('Buy Now button clicked');
-            const quantity = document.getElementById('quantity') ? document.getElementById('quantity').value : 1;
-            updateOrderSummary(quantity);
+            updateOrderSummary();
             if (customerFormModal) {
                 customerFormModal.show();
             } else {
@@ -224,7 +222,7 @@ function initProductActions() {
         });
     }
 
-    function addToCart(quantity) {
+    function addToCart() {
         // Add visual feedback
         addToCartBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Added to Cart!';
         addToCartBtn.classList.remove('btn-neo');
@@ -241,16 +239,14 @@ function initProductActions() {
         }, 2000);
 
         // Here you would typically send data to your backend
-        console.log(`Added ${quantity} Gaming PC(s) to cart`);
+        console.log('Added Gaming PC to cart');
     }
 
-    function updateOrderSummary(quantity) {
+    function updateOrderSummary() {
         const unitPrice = 1299;
-        const totalPrice = unitPrice * quantity;
         
-        document.getElementById('summaryQuantity').textContent = quantity;
-        document.getElementById('summaryPrice').textContent = `$${totalPrice.toFixed(2)}`;
-        document.getElementById('summaryTotal').textContent = `$${totalPrice.toFixed(2)}`;
+        document.getElementById('summaryPrice').textContent = `$${unitPrice.toFixed(2)}`;
+        document.getElementById('summaryTotal').textContent = `$${unitPrice.toFixed(2)}`;
     }
 }
 
@@ -557,7 +553,7 @@ function initCustomerForm() {
             email: formData.get('email'),
             phone: formData.get('phone'),
             product: 'Gaming PC Pro',
-            quantity: parseInt(document.getElementById('summaryQuantity').textContent),
+            quantity: 1,
             message: `Address: ${formData.get('address')}, ${formData.get('city')}, ${formData.get('state')} ${formData.get('zipCode')}, ${formData.get('province')}\nPayment Method: ${formData.get('paymentMethod')}\nSpecial Instructions: ${formData.get('specialInstructions') || 'None'}\nNewsletter: ${formData.get('newsletter') === 'on' ? 'Yes' : 'No'}`
         };
 

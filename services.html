@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - L-Tec Solutions</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .services-hero {
+            background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2339ff14" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .service-category {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+        }
+        
+        .service-card {
+            background: var(--dark-primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neo-green), var(--neo-blue));
+        }
+        
+        .service-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(57, 255, 20, 0.2);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-primary);
+        }
+        
+        .service-title {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .service-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .service-features li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--neo-green);
+            font-weight: bold;
+        }
+        
+        .service-price {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neo-green);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neo-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-note {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .pricing-section {
+            background: var(--dark-primary);
+            padding: 80px 0;
+        }
+        
+        .pricing-card {
+            background: var(--dark-secondary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(57, 255, 20, 0.2);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--neo-green);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neo-green);
+            color: var(--dark-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-title {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--neo-green);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-period {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--neo-green);
+            font-weight: bold;
+        }
+        
+        .process-section {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-primary);
+        }
+        
+        .process-title {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .process-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .why-choose-section {
+            background: var(--dark-primary);
+            padding: 80px 0;
+        }
+        
+        .advantage-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .advantage-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(57, 255, 20, 0.2);
+        }
+        
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: var(--dark-primary);
+        }
+        
+        .advantage-title {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .advantage-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2339ff14" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        @media (max-width: 768px) {
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .services-hero {
+                padding: 100px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cpu-fill me-2"></i>L-Tec Solutions
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Hero Section -->
+    <section class="services-hero">
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold mb-4">Our Services</h1>
+                    <p class="lead mb-5">Comprehensive technology solutions tailored to your needs</p>
+                    <div class="hero-buttons">
+                        <a href="#our-services" class="btn btn-neo btn-lg me-3">
+                            <i class="bi bi-gear me-2"></i>View Services
+                        </a>
+                        <a href="#pricing" class="btn btn-outline-neo btn-lg">
+                            <i class="bi bi-currency-dollar me-2"></i>View Pricing
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section id="our-services" class="service-category">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">What We Offer</h2>
+                    <p class="lead">Professional technology services for every need</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h4 class="service-title">Computer Repair</h4>
+                        <p class="service-description">
+                            Expert repair services for all types of computers, laptops, and devices. We fix hardware issues, software problems, and performance optimization.
+                        </p>
+                        <ul class="service-features">
+                            <li>Hardware diagnostics and repair</li>
+                            <li>Software troubleshooting</li>
+                            <li>Virus removal and system cleaning</li>
+                            <li>Data recovery services</li>
+                            <li>Performance optimization</li>
+                            <li>Warranty on all repairs</li>
+                        </ul>
+                        <div class="service-price">
+                            <div class="price-amount">From Rs. 2,500</div>
+                            <div class="price-note">Diagnosis fee included</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-wrench me-2"></i>Get Repair Quote
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h4 class="service-title">Custom PC Building</h4>
+                        <p class="service-description">
+                            Build your dream computer with our custom PC building service. We create high-performance systems tailored to your specific needs and budget.
+                        </p>
+                        <ul class="service-features">
+                            <li>Gaming PC builds</li>
+                            <li>Workstation configurations</li>
+                            <li>Budget-friendly options</li>
+                            <li>Component selection guidance</li>
+                            <li>Assembly and testing</li>
+                            <li>1-year warranty included</li>
+                        </ul>
+                        <div class="service-price">
+                            <div class="price-amount">From Rs. 50,000</div>
+                            <div class="price-note">Assembly fee: Rs. 5,000</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-hammer me-2"></i>Start Your Build
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-arrow-up-circle"></i>
+                        </div>
+                        <h4 class="service-title">System Upgrades</h4>
+                        <p class="service-description">
+                            Enhance your existing computer's performance with our upgrade services. We'll help you choose the right components and install them professionally.
+                        </p>
+                        <ul class="service-features">
+                            <li>RAM upgrades</li>
+                            <li>Storage upgrades (SSD/HDD)</li>
+                            <li>Graphics card upgrades</li>
+                            <li>Processor upgrades</li>
+                            <li>Power supply upgrades</li>
+                            <li>Compatibility checking</li>
+                        </ul>
+                        <div class="service-price">
+                            <div class="price-amount">From Rs. 3,000</div>
+                            <div class="price-note">Installation included</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-arrow-up me-2"></i>Upgrade Now
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="service-title">IT Support</h4>
+                        <p class="service-description">
+                            Comprehensive IT support services for businesses and individuals. We provide ongoing technical assistance and maintenance.
+                        </p>
+                        <ul class="service-features">
+                            <li>Remote technical support</li>
+                            <li>Network setup and maintenance</li>
+                            <li>Software installation</li>
+                            <li>Security audits</li>
+                            <li>Backup solutions</li>
+                            <li>24/7 emergency support</li>
+                        </ul>
+                        <div class="service-price">
+                            <div class="price-amount">From Rs. 5,000</div>
+                            <div class="price-note">Per month for businesses</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-headset me-2"></i>Get Support
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+                        <h4 class="service-title">Laptop Services</h4>
+                        <p class="service-description">
+                            Specialized services for laptops including screen replacement, keyboard repair, battery replacement, and general maintenance.
+                        </p>
+                        <ul class="service-features">
+                            <li>Screen replacement</li>
+                            <li>Keyboard repair</li>
+                            <li>Battery replacement</li>
+                            <li>Motherboard repair</li>
+                            <li>Fan cleaning and replacement</li>
+                            <li>Laptop cleaning service</li>
+                        </ul>
+                        <div class="service-price">
+                            <div class="price-amount">From Rs. 3,500</div>
+                            <div class="price-note">Parts not included</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-laptop me-2"></i>Repair Laptop
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-cloud-download"></i>
+                        </div>
+                        <h4 class="service-title">Data Recovery</h4>
+                        <p class="service-description">
+                            Professional data recovery services for accidentally deleted files, corrupted drives, and damaged storage devices.
+                        </p>
+                        <ul class="service-features">
+                            <li>Deleted file recovery</li>
+                            <li>Corrupted drive repair</li>
+                            <li>RAID data recovery</li>
+                            <li>SSD data recovery</li>
+                            <li>External drive recovery</li>
+                            <li>Secure data handling</li>
+                        </ul>
+                        <div class="service-price">
+                            <div class="price-amount">From Rs. 8,000</div>
+                            <div class="price-note">Success-based pricing</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-download me-2"></i>Recover Data
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Service Packages</h2>
+                    <p class="lead">Choose the perfect package for your needs</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card">
+                        <h4 class="pricing-title">Basic Support</h4>
+                        <div class="pricing-price">Rs. 5,000</div>
+                        <div class="pricing-period">per month</div>
+                        <ul class="pricing-features">
+                            <li>Remote technical support</li>
+                            <li>Basic troubleshooting</li>
+                            <li>Software installation</li>
+                            <li>Email support</li>
+                            <li>Monthly system check</li>
+                            <li>Basic security scan</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-outline-neo w-100">
+                            <i class="bi bi-check me-2"></i>Choose Plan
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card featured">
+                        <h4 class="pricing-title">Professional Support</h4>
+                        <div class="pricing-price">Rs. 12,000</div>
+                        <div class="pricing-period">per month</div>
+                        <ul class="pricing-features">
+                            <li>Everything in Basic</li>
+                            <li>Priority support</li>
+                            <li>On-site visits (2 per month)</li>
+                            <li>Network management</li>
+                            <li>Backup solutions</li>
+                            <li>Security monitoring</li>
+                            <li>Phone support</li>
+                            <li>Quarterly system optimization</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-neo w-100">
+                            <i class="bi bi-star me-2"></i>Most Popular
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card">
+                        <h4 class="pricing-title">Enterprise Support</h4>
+                        <div class="pricing-price">Rs. 25,000</div>
+                        <div class="pricing-period">per month</div>
+                        <ul class="pricing-features">
+                            <li>Everything in Professional</li>
+                            <li>24/7 emergency support</li>
+                            <li>Unlimited on-site visits</li>
+                            <li>Dedicated account manager</li>
+                            <li>Custom solutions</li>
+                            <li>Advanced security</li>
+                            <li>Monthly reports</li>
+                            <li>Training sessions</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-outline-neo w-100">
+                            <i class="bi bi-building me-2"></i>Enterprise
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">How We Work</h2>
+                    <p class="lead">Our proven process ensures quality results</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <h4 class="process-title">Consultation</h4>
+                        <p class="process-description">
+                            We start with a detailed consultation to understand your needs, requirements, and budget.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <h4 class="process-title">Assessment</h4>
+                        <p class="process-description">
+                            Our experts assess your current system and provide detailed recommendations.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <h4 class="process-title">Implementation</h4>
+                        <p class="process-description">
+                            We implement the solution with precision and care, ensuring minimal downtime.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <h4 class="process-title">Support</h4>
+                        <p class="process-description">
+                            Ongoing support and maintenance to keep your systems running smoothly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Why Choose L-Tec Solutions?</h2>
+                    <p class="lead">The advantages of working with us</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <h4 class="advantage-title">Certified Experts</h4>
+                        <p class="advantage-description">
+                            Our team consists of certified professionals with years of experience in the technology industry.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <h4 class="advantage-title">Quick Response</h4>
+                        <p class="advantage-description">
+                            We respond to service requests within 2 hours and provide same-day service for urgent issues.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="advantage-title">Warranty</h4>
+                        <p class="advantage-description">
+                            All our services come with comprehensive warranties to ensure your peace of mind.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="bi bi-currency-dollar"></i>
+                        </div>
+                        <h4 class="advantage-title">Fair Pricing</h4>
+                        <p class="advantage-description">
+                            Transparent, competitive pricing with no hidden fees. You know exactly what you're paying for.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="display-5 fw-bold mb-4">Ready to Get Started?</h2>
+                    <p class="lead mb-5">Contact us today for a free consultation and quote</p>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="btn btn-neo btn-lg me-3">
+                            <i class="bi bi-telephone me-2"></i>Call Now
+                        </a>
+                        <a href="contact.html" class="btn btn-outline-neo btn-lg">
+                            <i class="bi bi-envelope me-2"></i>Get Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">L-Tec Solutions</h5>
+                    <p class="footer-text">Your trusted partner for high-quality computers, laptops, and technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#computers">Desktop PCs</a></li>
+                        <li><a href="products.html#laptops">Laptops</a></li>
+                        <li><a href="products.html#accessories">Accessories</a></li>
+                        <li><a href="products.html#gaming">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Services</h6>
+                    <ul class="footer-links">
+                        <li><a href="services.html#repair">Repair</a></li>
+                        <li><a href="services.html#upgrade">Upgrade</a></li>
+                        <li><a href="services.html#consultation">Consultation</a></li>
+                        <li><a href="services.html#support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#news">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#warranty">Warranty</a></li>
+                        <li><a href="#shipping">Shipping</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="footer-copyright">&copy; 2024 L-Tec Solutions. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.floating-shape');
+                
+                shapes.forEach((shape, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

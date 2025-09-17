@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - L-Tec Solutions</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2339ff14" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .story-section {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+        }
+        
+        .story-card {
+            background: var(--dark-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neo-green), var(--neo-blue));
+        }
+        
+        .story-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .story-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .values-section {
+            background: var(--dark-primary);
+            padding: 80px 0;
+        }
+        
+        .value-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .value-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(57, 255, 20, 0.2);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-primary);
+        }
+        
+        .value-title {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .value-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .team-section {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+        }
+        
+        .team-card {
+            background: var(--dark-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .team-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(57, 255, 20, 0.2);
+        }
+        
+        .team-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--dark-primary);
+        }
+        
+        .team-name {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-position {
+            color: var(--neo-green);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .stats-section {
+            background: var(--dark-primary);
+            padding: 80px 0;
+        }
+        
+        .stat-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(57, 255, 20, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--neo-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .mission-section {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+        }
+        
+        .mission-card {
+            background: var(--dark-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mission-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .mission-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .timeline-section {
+            background: var(--dark-primary);
+            padding: 80px 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--neo-green);
+            border-radius: 50%;
+            border: 4px solid var(--dark-primary);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: rgba(57, 255, 20, 0.3);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .timeline-year {
+            color: var(--neo-green);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .story-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .story-title {
+                font-size: 2rem;
+            }
+            
+            .about-hero {
+                padding: 100px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cpu-fill me-2"></i>L-Tec Solutions
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold mb-4">About L-Tec Solutions</h1>
+                    <p class="lead mb-5">Your trusted partner in technology innovation and excellence</p>
+                    <div class="hero-buttons">
+                        <a href="#our-story" class="btn btn-neo btn-lg me-3">
+                            <i class="bi bi-book me-2"></i>Our Story
+                        </a>
+                        <a href="#our-team" class="btn btn-outline-neo btn-lg">
+                            <i class="bi bi-people me-2"></i>Meet Our Team
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="story-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="story-card">
+                        <h2 class="story-title">Our Story</h2>
+                        <p class="story-text">
+                            Founded in 2018, L-Tec Solutions began as a small team of passionate technology enthusiasts with a simple mission: to make cutting-edge technology accessible to everyone. What started as a local computer repair shop has evolved into one of Sri Lanka's leading technology solution providers.
+                        </p>
+                        <p class="story-text">
+                            Our journey began when our founder, recognizing the growing need for reliable technology solutions in Sri Lanka, decided to bridge the gap between complex technology and everyday users. We started by offering custom-built computers and laptop repairs, but our vision was always bigger.
+                        </p>
+                        <p class="story-text">
+                            Today, L-Tec Solutions serves thousands of customers across Sri Lanka, from individual consumers to large enterprises. We've built our reputation on three core principles: quality, reliability, and customer satisfaction. Every product we sell and every service we provide is backed by our commitment to excellence.
+                        </p>
+                        <p class="story-text">
+                            As technology continues to evolve, so do we. We stay at the forefront of innovation, constantly updating our knowledge and expanding our services to meet the ever-changing needs of our customers. Our story is one of growth, adaptation, and unwavering dedication to our mission.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Our Values</h2>
+                    <p class="lead">The principles that guide everything we do</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <h4 class="value-title">Quality First</h4>
+                        <p class="value-description">
+                            We never compromise on quality. Every product we offer undergoes rigorous testing to ensure it meets our high standards and exceeds customer expectations.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h4 class="value-title">Customer-Centric</h4>
+                        <p class="value-description">
+                            Our customers are at the heart of everything we do. We listen to their needs, understand their challenges, and provide solutions that truly make a difference.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h4 class="value-title">Innovation</h4>
+                        <p class="value-description">
+                            We embrace new technologies and continuously innovate to provide cutting-edge solutions that keep our customers ahead of the curve.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="value-title">Reliability</h4>
+                        <p class="value-description">
+                            Trust is earned through consistent performance. We deliver on our promises and stand behind every product and service we provide.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h4 class="value-title">Integrity</h4>
+                        <p class="value-description">
+                            We conduct business with honesty, transparency, and ethical practices. Our reputation is built on trust and integrity.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4 class="value-title">Growth</h4>
+                        <p class="value-description">
+                            We believe in continuous improvement and growth, both for our company and our customers. We help our clients grow with the right technology.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Our Impact</h2>
+                    <p class="lead">Numbers that speak to our success and commitment</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Systems Built</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section id="our-team" class="team-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Meet Our Team</h2>
+                    <p class="lead">The passionate professionals behind L-Tec Solutions</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h4 class="team-name">Lakshan Perera</h4>
+                        <p class="team-position">Founder & CEO</p>
+                        <p class="team-description">
+                            Technology visionary with 10+ years of experience in computer hardware and software solutions. Passionate about bringing cutting-edge technology to Sri Lanka.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h4 class="team-name">Nimali Fernando</h4>
+                        <p class="team-position">Technical Director</p>
+                        <p class="team-description">
+                            Expert in system architecture and custom builds. Specializes in high-performance gaming and workstation systems with 8+ years of experience.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h4 class="team-name">Samantha Rajapaksa</h4>
+                        <p class="team-position">Customer Relations Manager</p>
+                        <p class="team-description">
+                            Dedicated to ensuring exceptional customer experience. Manages client relationships and ensures every customer receives personalized attention.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h4 class="team-name">Dinesh Silva</h4>
+                        <p class="team-position">Lead Technician</p>
+                        <p class="team-description">
+                            Master technician with expertise in hardware repair and system optimization. Ensures every device leaves our workshop in perfect condition.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h4 class="team-name">Priya Wickramasinghe</h4>
+                        <p class="team-position">Sales Specialist</p>
+                        <p class="team-description">
+                            Product expert who helps customers find the perfect technology solutions. Specializes in laptops, accessories, and business systems.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h4 class="team-name">Kumar Perera</h4>
+                        <p class="team-position">Support Engineer</p>
+                        <p class="team-description">
+                            Provides technical support and after-sales service. Ensures our customers receive ongoing assistance and maintenance for their systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="mission-card">
+                        <h2 class="mission-title">Our Mission</h2>
+                        <p class="mission-text">
+                            To democratize technology by providing high-quality, affordable, and reliable computer solutions that empower individuals and businesses to achieve their goals. We believe that everyone deserves access to the best technology, regardless of their technical expertise or budget constraints.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Our Journey</h2>
+                    <p class="lead">Key milestones in our growth story</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <h4 class="timeline-title">Company Founded</h4>
+                        <p class="timeline-description">
+                            L-Tec Solutions was established with a vision to provide quality technology solutions to the Sri Lankan market.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2019</div>
+                        <h4 class="timeline-title">First Major Contract</h4>
+                        <p class="timeline-description">
+                            Secured our first enterprise client, marking our entry into the business solutions market.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <h4 class="timeline-title">Digital Transformation</h4>
+                        <p class="timeline-description">
+                            Launched our online platform and expanded our services to include remote support and consultation.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2021</div>
+                        <h4 class="timeline-title">Team Expansion</h4>
+                        <p class="timeline-description">
+                            Grew our team to 10+ professionals and opened our second service center in Colombo.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <h4 class="timeline-title">Award Recognition</h4>
+                        <p class="timeline-description">
+                            Received the "Best Technology Service Provider" award from the Sri Lankan IT Association.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <h4 class="timeline-title">Product Range Expansion</h4>
+                        <p class="timeline-description">
+                            Launched our comprehensive product catalog featuring gaming PCs, workstations, and accessories.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <h4 class="timeline-title">Future Vision</h4>
+                        <p class="timeline-description">
+                            Continuing to innovate and expand our services to meet the evolving needs of our customers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">L-Tec Solutions</h5>
+                    <p class="footer-text">Your trusted partner for high-quality computers, laptops, and technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#computers">Desktop PCs</a></li>
+                        <li><a href="products.html#laptops">Laptops</a></li>
+                        <li><a href="products.html#accessories">Accessories</a></li>
+                        <li><a href="products.html#gaming">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Services</h6>
+                    <ul class="footer-links">
+                        <li><a href="#repair">Repair</a></li>
+                        <li><a href="#upgrade">Upgrade</a></li>
+                        <li><a href="#consultation">Consultation</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#news">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#warranty">Warranty</a></li>
+                        <li><a href="#shipping">Shipping</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="footer-copyright">&copy; 2024 L-Tec Solutions. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.floating-shape');
+                
+                shapes.forEach((shape, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
