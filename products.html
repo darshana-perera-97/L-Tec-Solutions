@@ -206,6 +206,281 @@
             color: var(--text-muted);
             font-size: 1rem;
         }
+        
+        /* Hero Section Styles */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            top: 40%;
+            right: 30%;
+            animation-delay: 4s;
+        }
+        
+        .shape-4 {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .hero-badge {
+            display: inline-block;
+        }
+        
+        .badge-text {
+            background: rgba(57, 255, 20, 0.1);
+            color: var(--neo-green);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(57, 255, 20, 0.3);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 500px;
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .hero-showcase {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .product-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            height: 400px;
+        }
+        
+        .showcase-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .item-1 {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        
+        .item-2 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        
+        .item-3 {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        .item-4 {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        
+        .showcase-card {
+            position: relative;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .showcase-card:hover {
+            border-color: var(--neo-green);
+            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3);
+        }
+        
+        .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-card:hover .showcase-image {
+            transform: scale(1.05);
+        }
+        
+        .showcase-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-card:hover .showcase-overlay {
+            transform: translateY(0);
+        }
+        
+        .showcase-overlay h5 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .showcase-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--neo-green);
+            font-weight: 600;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        .scroll-arrow {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--neo-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neo-green);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-arrow:hover {
+            background: var(--neo-green);
+            color: var(--dark-primary);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .min-vh-60 {
+            min-height: 60vh;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .product-showcase-grid {
+                height: 300px;
+                gap: 0.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -243,13 +518,108 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section" style="padding-top: 100px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1 class="display-4 fw-bold mb-4">Our Products</h1>
-                    <p class="lead mb-5">Discover our complete range of high-quality computers, laptops, and accessories</p>
+    <section class="hero-section" style="padding-top: 100px; background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%); position: relative; overflow: hidden;">
+        <!-- Animated Background Elements -->
+        <div class="hero-bg-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+        </div>
+        
+        <div class="container position-relative">
+            <div class="row align-items-center min-vh-60">
+                <!-- Left Content -->
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <div class="hero-badge mb-3">
+                            <span class="badge-text">
+                                <i class="bi bi-star-fill me-2"></i>Premium Technology Solutions
+                            </span>
+                        </div>
+                        <h1 class="hero-title mb-4">
+                            Discover Our <span class="text-gradient">Complete Product Range</span>
+                        </h1>
+                        <p class="hero-description mb-4">
+                            From high-performance gaming PCs to professional workstations, 
+                            cutting-edge laptops to essential accessories - we have everything 
+                            you need to power your digital world with the latest technology.
+                        </p>
+                        <div class="hero-features mb-5">
+                            <div class="feature-item">
+                                <i class="bi bi-check-circle-fill text-neo me-2"></i>
+                                <span>Premium Quality Components</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-check-circle-fill text-neo me-2"></i>
+                                <span>Latest Technology</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-check-circle-fill text-neo me-2"></i>
+                                <span>Expert Support</span>
+                            </div>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="#computers" class="btn btn-neo btn-lg me-3">
+                                <i class="bi bi-desktop me-2"></i>Explore Computers
+                            </a>
+                            <a href="#laptops" class="btn btn-outline-neo btn-lg">
+                                <i class="bi bi-laptop me-2"></i>View Laptops
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Right Content - Product Showcase -->
+                <div class="col-lg-6">
+                    <div class="hero-showcase">
+                        <div class="product-showcase-grid">
+                            <div class="showcase-item item-1">
+                                <div class="showcase-card">
+                                    <img src="Assets/p11.jpg" alt="Gaming PC" class="showcase-image">
+                                    <div class="showcase-overlay">
+                                        <h5>Gaming PC</h5>
+                                        <p>Rs. 395,700</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-item item-2">
+                                <div class="showcase-card">
+                                    <img src="Assets/l1.png" alt="Gaming Laptop" class="showcase-image">
+                                    <div class="showcase-overlay">
+                                        <h5>Gaming Laptop</h5>
+                                        <p>Rs. 626,700</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-item item-3">
+                                <div class="showcase-card">
+                                    <img src="Assets/p1.jpg" alt="Mechanical Keyboard" class="showcase-image">
+                                    <div class="showcase-overlay">
+                                        <h5>Mechanical Keyboard</h5>
+                                        <p>Rs. 49,170</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-item item-4">
+                                <div class="showcase-card">
+                                    <img src="Assets/p10.jpg" alt="Workstation PC" class="showcase-image">
+                                    <div class="showcase-overlay">
+                                        <h5>Workstation PC</h5>
+                                        <p>Rs. 824,700</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="bi bi-chevron-down"></i>
             </div>
         </div>
     </section>
@@ -660,6 +1030,34 @@
     <script src="script.js"></script>
     
     <script>
+        // Hero Section Scroll Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll indicator functionality
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    const statsSection = document.querySelector('.stats-section');
+                    if (statsSection) {
+                        statsSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.floating-shape');
+                
+                shapes.forEach((shape, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                });
+            });
+        });
+        
         // Filter functionality
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');

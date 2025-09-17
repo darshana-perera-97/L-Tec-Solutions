@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - L-Tec Solutions</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2339ff14" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .contact-form-section {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .form-container {
+            background: var(--dark-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .form-subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            background: var(--dark-secondary);
+            border: 2px solid rgba(57, 255, 20, 0.2);
+            color: var(--text-light);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            background: var(--dark-secondary);
+            border-color: var(--neo-green);
+            color: var(--text-light);
+            box-shadow: 0 0 0 0.2rem rgba(57, 255, 20, 0.25);
+        }
+        
+        .form-control::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .form-select {
+            background: var(--dark-secondary);
+            border: 2px solid rgba(57, 255, 20, 0.2);
+            color: var(--text-light);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+        }
+        
+        .form-select:focus {
+            border-color: var(--neo-green);
+            box-shadow: 0 0 0 0.2rem rgba(57, 255, 20, 0.25);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            border: none;
+            color: var(--dark-primary);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(57, 255, 20, 0.3);
+        }
+        
+        .contact-info-section {
+            background: var(--dark-primary);
+            padding: 80px 0;
+        }
+        
+        .contact-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .contact-card:hover {
+            border-color: var(--neo-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.2);
+        }
+        
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-primary);
+        }
+        
+        .contact-title {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-text {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-link {
+            color: var(--neo-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-link:hover {
+            color: var(--neo-blue);
+        }
+        
+        .map-section {
+            background: var(--dark-secondary);
+            padding: 80px 0;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(57, 255, 20, 0.2);
+        }
+        
+        .map-placeholder {
+            background: var(--dark-primary);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+        
+        .requirement-section {
+            background: var(--dark-primary);
+            padding: 60px 0;
+        }
+        
+        .requirement-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        .requirement-title {
+            color: var(--neo-green);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .requirement-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .requirement-list li {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .requirement-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--neo-green);
+            font-weight: bold;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neo-green), var(--neo-blue));
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .success-message {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neo-green);
+            color: var(--neo-green);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 2rem;
+            }
+            
+            .contact-hero {
+                padding: 100px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cpu-fill me-2"></i>L-Tec Solutions
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold mb-4">Get In Touch</h1>
+                    <p class="lead mb-5">Ready to transform your technology needs? Let's discuss your requirements and find the perfect solution for you.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact-form" class="btn btn-neo btn-lg me-3">
+                            <i class="bi bi-chat-dots me-2"></i>Send Message
+                        </a>
+                        <a href="tel:+94112345678" class="btn btn-outline-neo btn-lg">
+                            <i class="bi bi-telephone me-2"></i>Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="contact-form-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-container">
+                        <h2 class="form-title">Contact Us</h2>
+                        <p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+                        
+                        <!-- Success/Error Messages -->
+                        <div id="successMessage" class="success-message">
+                            <i class="bi bi-check-circle me-2"></i>
+                            Thank you! Your message has been sent successfully. We'll contact you soon.
+                        </div>
+                        
+                        <div id="errorMessage" class="error-message">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            There was an error sending your message. Please try again.
+                        </div>
+                        
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName" class="form-label">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName" class="form-label">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone" class="form-label">Phone Number *</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone"    required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company" class="form-label">Company/Organization</label>
+                                <input type="text" class="form-control" id="company" name="company">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="inquiryType" class="form-label">Type of Inquiry *</label>
+                                <select class="form-select" id="inquiryType" name="inquiryType" required>
+                                    <option value="">Select Inquiry Type</option>
+                                    <option value="product-inquiry">Product Inquiry</option>
+                                    <option value="custom-build">Custom Build Request</option>
+                                    <option value="technical-support">Technical Support</option>
+                                    <option value="business-partnership">Business Partnership</option>
+                                    <option value="general-inquiry">General Inquiry</option>
+                                    <option value="quote-request">Quote Request</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget" class="form-label">Budget Range</label>
+                                <select class="form-select" id="budget" name="budget">
+                                    <option value="">Select Budget Range</option>
+                                    <option value="under-100k">Under Rs. 100,000</option>
+                                    <option value="100k-300k">Rs. 100,000 - Rs. 300,000</option>
+                                    <option value="300k-500k">Rs. 300,000 - Rs. 500,000</option>
+                                    <option value="500k-1m">Rs. 500,000 - Rs. 1,000,000</option>
+                                    <option value="over-1m">Over Rs. 1,000,000</option>
+                                    <option value="discuss">Let's Discuss</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="requirements" class="form-label">Detailed Requirements *</label>
+                                <textarea class="form-control" id="requirements" name="requirements" rows="5" 
+                                    placeholder="Please describe your specific requirements, intended use, performance needs, and any other details that would help us provide the best solution..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timeline" class="form-label">Project Timeline</label>
+                                <select class="form-select" id="timeline" name="timeline">
+                                    <option value="">Select Timeline</option>
+                                    <option value="asap">ASAP (Within 1 week)</option>
+                                    <option value="1-2-weeks">1-2 weeks</option>
+                                    <option value="1-month">Within 1 month</option>
+                                    <option value="2-3-months">2-3 months</option>
+                                    <option value="flexible">Flexible</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="additionalInfo" class="form-label">Additional Information</label>
+                                <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3" 
+                                    placeholder="Any additional information, questions, or special requests..."></textarea>
+                            </div>
+                            
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    Subscribe to our newsletter for updates and special offers
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-submit">
+                                <i class="bi bi-send me-2"></i>Send Message via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Get In Touch</h2>
+                    <p class="lead">Multiple ways to reach us</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h4 class="contact-title">Phone</h4>
+                        <p class="contact-text">Call us for immediate assistance</p>
+                        <a href="tel:+94112345678" class="contact-link">+94 11 234 5678</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h4 class="contact-title">Email</h4>
+                        <p class="contact-text">Send us an email anytime</p>
+                        <a href="mailto:info@ltecsolutions.lk" class="contact-link">info@ltecsolutions.lk</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-whatsapp"></i>
+                        </div>
+                        <h4 class="contact-title">WhatsApp</h4>
+                        <p class="contact-text">Chat with us on WhatsApp</p>
+                        <a href="https://wa.me/94112345678" class="contact-link" target="_blank">+94 11 234 5678</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h4 class="contact-title">Address</h4>
+                        <p class="contact-text">Visit our showroom</p>
+                        <p class="contact-text">123 Tech Street<br>Colombo 07, Sri Lanka</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <h4 class="contact-title">Business Hours</h4>
+                        <p class="contact-text">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p class="contact-text">Saturday: 9:00 AM - 4:00 PM</p>
+                        <p class="contact-text">Sunday: Closed</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4 class="contact-title">Support</h4>
+                        <p class="contact-text">24/7 Technical Support</p>
+                        <a href="tel:+94112345679" class="contact-link">+94 11 234 5679</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Find Us</h2>
+                    <p class="lead">Visit our showroom and experience our products firsthand</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <div class="text-center">
+                                <i class="bi bi-geo-alt-fill me-2"></i>
+                                Interactive Map Coming Soon
+                                <br>
+                                <small>123 Tech Street, Colombo 07, Sri Lanka</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirement-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">What We Need From You</h2>
+                    <p class="lead">Help us provide the best solution by sharing these details</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="requirement-card">
+                        <h4 class="requirement-title">For Custom Builds</h4>
+                        <ul class="requirement-list">
+                            <li>Intended use (gaming, work, content creation, etc.)</li>
+                            <li>Performance requirements</li>
+                            <li>Budget range</li>
+                            <li>Preferred brands or components</li>
+                            <li>Timeline for completion</li>
+                            <li>Any specific software requirements</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="requirement-card">
+                        <h4 class="requirement-title">For Business Solutions</h4>
+                        <ul class="requirement-list">
+                            <li>Number of users/workstations needed</li>
+                            <li>Current IT infrastructure</li>
+                            <li>Security requirements</li>
+                            <li>Integration needs</li>
+                            <li>Maintenance preferences</li>
+                            <li>Scalability requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">L-Tec Solutions</h5>
+                    <p class="footer-text">Your trusted partner for high-quality computers, laptops, and technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#computers">Desktop PCs</a></li>
+                        <li><a href="products.html#laptops">Laptops</a></li>
+                        <li><a href="products.html#accessories">Accessories</a></li>
+                        <li><a href="products.html#gaming">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Services</h6>
+                    <ul class="footer-links">
+                        <li><a href="#repair">Repair</a></li>
+                        <li><a href="#upgrade">Upgrade</a></li>
+                        <li><a href="#consultation">Consultation</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#news">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#warranty">Warranty</a></li>
+                        <li><a href="#shipping">Shipping</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="footer-copyright">&copy; 2024 L-Tec Solutions. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // WhatsApp phone number (replace with actual number)
+            const whatsappNumber = '94112345678';
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Get form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+                
+                // Validate required fields
+                if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.inquiryType || !data.requirements) {
+                    showError('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    showError('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Validate phone number (accept both formats: 0771461925 and +94771461925)
+                const phoneRegex = /^(\+94|0)?7[0-9]{8}$/;
+                const cleanPhone = data.phone.replace(/[\s\-\(\)]/g, '');
+                if (!phoneRegex.test(cleanPhone)) {
+                    showError('Please enter a valid phone number (e.g.,  ).');
+                    return;
+                }
+                
+                // Create WhatsApp message
+                const whatsappMessage = createWhatsAppMessage(data);
+                
+                // Send to WhatsApp
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                // Open WhatsApp in new tab
+                window.open(whatsappUrl, '_blank');
+                
+                // Show success message
+                showSuccess();
+                
+                // Reset form
+                contactForm.reset();
+            });
+            
+            function createWhatsAppMessage(data) {
+                let message = `🖥️ *New Contact Form Submission - L-Tec Solutions*\n\n`;
+                message += `👤 *Contact Information:*\n`;
+                message += `• Name: ${data.firstName} ${data.lastName}\n`;
+                message += `• Email: ${data.email}\n`;
+                message += `• Phone: ${data.phone}\n`;
+                if (data.company) message += `• Company: ${data.company}\n`;
+                
+                message += `\n📋 *Inquiry Details:*\n`;
+                message += `• Type: ${getInquiryTypeLabel(data.inquiryType)}\n`;
+                if (data.budget) message += `• Budget: ${getBudgetLabel(data.budget)}\n`;
+                if (data.timeline) message += `• Timeline: ${getTimelineLabel(data.timeline)}\n`;
+                
+                message += `\n📝 *Requirements:*\n${data.requirements}\n`;
+                
+                if (data.additionalInfo) {
+                    message += `\n💬 *Additional Information:*\n${data.additionalInfo}\n`;
+                }
+                
+                if (data.newsletter) {
+                    message += `\n📧 *Newsletter:* Subscribed\n`;
+                }
+                
+                message += `\n⏰ *Submitted:* ${new Date().toLocaleString()}\n`;
+                message += `\n---\nPlease respond to this inquiry as soon as possible.`;
+                
+                return message;
+            }
+            
+            function getInquiryTypeLabel(value) {
+                const types = {
+                    'product-inquiry': 'Product Inquiry',
+                    'custom-build': 'Custom Build Request',
+                    'technical-support': 'Technical Support',
+                    'business-partnership': 'Business Partnership',
+                    'general-inquiry': 'General Inquiry',
+                    'quote-request': 'Quote Request'
+                };
+                return types[value] || value;
+            }
+            
+            function getBudgetLabel(value) {
+                const budgets = {
+                    'under-100k': 'Under Rs. 100,000',
+                    '100k-300k': 'Rs. 100,000 - Rs. 300,000',
+                    '300k-500k': 'Rs. 300,000 - Rs. 500,000',
+                    '500k-1m': 'Rs. 500,000 - Rs. 1,000,000',
+                    'over-1m': 'Over Rs. 1,000,000',
+                    'discuss': 'Let\'s Discuss'
+                };
+                return budgets[value] || value;
+            }
+            
+            function getTimelineLabel(value) {
+                const timelines = {
+                    'asap': 'ASAP (Within 1 week)',
+                    '1-2-weeks': '1-2 weeks',
+                    '1-month': 'Within 1 month',
+                    '2-3-months': '2-3 months',
+                    'flexible': 'Flexible'
+                };
+                return timelines[value] || value;
+            }
+            
+            function showSuccess() {
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

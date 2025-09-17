@@ -474,9 +474,11 @@ function initCustomerForm() {
         }
         // Phone validation
         else if (fieldName === 'phone' && value) {
-            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-            if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''))) {
-                errorMessage = 'Please enter a valid phone number';
+            // Accept both formats: 0771461925 and +94771461925
+            const phoneRegex = /^(\+94|0)?7[0-9]{8}$/;
+            const cleanPhone = value.replace(/[\s\-\(\)]/g, '');
+            if (!phoneRegex.test(cleanPhone)) {
+                errorMessage = 'Please enter a valid phone number (e.g.,  )';
                 isValid = false;
             }
         }
