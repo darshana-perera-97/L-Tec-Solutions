@@ -10,7 +10,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize products tabs
     initProductsTabs();
+    
+    // Initialize cart count
+    updateCartCount();
 });
+
+// Function to update cart count in navbar
+function updateCartCount() {
+    const cartCountElement = document.getElementById('cartCount');
+    if (cartCountElement) {
+        const cart = JSON.parse(localStorage.getItem('ltec_cart') || '[]');
+        const totalItems = cart.reduce((count, item) => count + item.quantity, 0);
+        cartCountElement.textContent = totalItems;
+    }
+}
 
 // Function to animate counter numbers
 function animateCounters() {

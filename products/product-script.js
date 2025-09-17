@@ -223,6 +223,51 @@ function initProductActions() {
     }
 
     function addToCart() {
+        // Get product details from the page
+        const productName = document.querySelector('.product-title')?.textContent || 'Product';
+        const productPriceElement = document.querySelector('.current-price');
+        const productImageElement = document.querySelector('.product-image img');
+        
+        if (!productPriceElement) {
+            console.error('Product price not found');
+            return;
+        }
+        
+        // Extract price (remove "Rs." and commas)
+        const priceText = productPriceElement.textContent.replace('Rs.', '').replace(/,/g, '').trim();
+        const productPrice = parseFloat(priceText);
+        
+        // Generate product ID from URL or use a default
+        const productId = window.location.pathname.split('/').pop().replace('.html', '') || 'product';
+        
+        // Get product image
+        const productImage = productImageElement ? productImageElement.src : '../Assets/p1.jpg';
+        
+        // Add to cart using the global cart manager
+        if (typeof addToCart === 'function') {
+            addToCart(productId, productName, productPrice, productImage);
+        } else {
+            // Fallback: store in localStorage directly
+            const cartItem = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantity: 1
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('ltec_cart') || '[]');
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(cartItem);
+            }
+            
+            localStorage.setItem('ltec_cart', JSON.stringify(cart));
+        }
+        
         // Add visual feedback
         addToCartBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Added to Cart!';
         addToCartBtn.classList.remove('btn-neo');
@@ -238,8 +283,7 @@ function initProductActions() {
             addToCartBtn.classList.add('btn-neo');
         }, 2000);
 
-        // Here you would typically send data to your backend
-        console.log('Added Gaming PC to cart');
+        console.log('Added product to cart:', productName, productPrice);
     }
 
     function updateOrderSummary() {
