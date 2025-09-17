@@ -538,7 +538,7 @@ function initCustomerForm() {
             phone: formData.get('phone'),
             product: 'Gaming PC Pro',
             quantity: parseInt(document.getElementById('summaryQuantity').textContent),
-            message: `Address: ${formData.get('address')}, ${formData.get('city')}, ${formData.get('state')} ${formData.get('zipCode')}, ${formData.get('country')}\nPayment Method: ${formData.get('paymentMethod')}\nSpecial Instructions: ${formData.get('specialInstructions') || 'None'}\nNewsletter: ${formData.get('newsletter') === 'on' ? 'Yes' : 'No'}`
+            message: `Address: ${formData.get('address')}, ${formData.get('city')}, ${formData.get('state')} ${formData.get('zipCode')}, ${formData.get('province')}\nPayment Method: ${formData.get('paymentMethod')}\nSpecial Instructions: ${formData.get('specialInstructions') || 'None'}\nNewsletter: ${formData.get('newsletter') === 'on' ? 'Yes' : 'No'}`
         };
 
         // Show processing state
