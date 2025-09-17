@@ -438,6 +438,22 @@ function initCustomerForm() {
             }
         });
     });
+    
+    // Phone input restriction - only allow digits
+    const phoneInput = customerForm.querySelector('input[type="tel"], input[name="phone"]');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            // Remove any non-digit characters
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+        
+        phoneInput.addEventListener('keypress', function(e) {
+            // Only allow digits (0-9)
+            if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
 
     function validateForm() {
         let isValid = true;
