@@ -56,6 +56,18 @@ app.post('/api/submit-form', async (req, res) => {
         }
 
         // Format the message for the business
+        const now = new Date();
+        const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+        const formattedDate = istTime.toLocaleString("en-IN", {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+
         const message = `🏢 *New Product Inquiry from L-Tec Solutions Website*
 
 👤 *Customer Details:*
@@ -68,7 +80,7 @@ app.post('/api/submit-form', async (req, res) => {
 • Quantity: ${formData.quantity || 'Not specified'}
 • Message: ${formData.message || 'No additional message'}
 
-📅 *Inquiry Date:* ${new Date().toLocaleString()}
+📅 *Inquiry Date:* ${formattedDate} (IST)
 
 Please contact the customer as soon as possible.`;
 

@@ -409,15 +409,9 @@ function initCustomerForm() {
     console.log('Customer form elements found, setting up form...');
     
 
-    // Form validation
-    customerForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (validateForm()) {
-            processOrder();
-        }
-    });
-
-    proceedToPaymentBtn.addEventListener('click', function() {
+    // Form validation - only handle button click to avoid duplicate submissions
+    proceedToPaymentBtn.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent form submission
         if (validateForm()) {
             processOrder();
         }
