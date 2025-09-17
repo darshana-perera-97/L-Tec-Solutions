@@ -243,10 +243,10 @@ function initProductActions() {
     }
 
     function updateOrderSummary() {
-        const unitPrice = 1299;
+        const unitPrice = 428700; // LKR price
         
-        document.getElementById('summaryPrice').textContent = `$${unitPrice.toFixed(2)}`;
-        document.getElementById('summaryTotal').textContent = `$${unitPrice.toFixed(2)}`;
+        document.getElementById('summaryPrice').textContent = `Rs. ${unitPrice.toLocaleString()}`;
+        document.getElementById('summaryTotal').textContent = `Rs. ${unitPrice.toLocaleString()}`;
     }
 }
 

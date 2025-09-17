@@ -638,3 +638,33 @@ body {
     color: inherit;
     transform: translateY(-5px);
 }
+
+/* Copyright Bar */
+.copyright-bar {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 1px solid #333;
+}
+
+.copyright-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* Related Products Links */
+.related-product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.related-product-link:hover {
+    text-decoration: none;
+    color: inherit;
+    transform: translateY(-5px);
+}
