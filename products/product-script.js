@@ -2,6 +2,7 @@
 
 // Global modal instance
 let customerFormModal = null;
+let isSubmitting = false; // Flag to prevent duplicate submissions
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Product page DOM loaded, initializing...');
@@ -412,6 +413,13 @@ function initCustomerForm() {
     // Form validation - only handle button click to avoid duplicate submissions
     proceedToPaymentBtn.addEventListener('click', function(e) {
         e.preventDefault(); // Prevent form submission
+        
+        // Prevent duplicate submissions
+        if (isSubmitting) {
+            console.log('Form is already being submitted, ignoring click');
+            return;
+        }
+        
         if (validateForm()) {
             processOrder();
         }
@@ -472,16 +480,7 @@ function initCustomerForm() {
                 isValid = false;
             }
         }
-        // Phone validation
-        else if (fieldName === 'phone' && value) {
-            // Accept both formats: 0771461925 and +94771461925
-            const phoneRegex = /^(\+94|0)?7[0-9]{8}$/;
-            const cleanPhone = value.replace(/[\s\-\(\)]/g, '');
-            if (!phoneRegex.test(cleanPhone)) {
-                errorMessage = 'Please enter a valid phone number (e.g.,  )';
-                isValid = false;
-            }
-        }
+        // Phone validation - removed to allow any phone number format
         // ZIP code validation
         else if (fieldName === 'zipCode' && value) {
             const zipRegex = /^\d{5}(-\d{4})?$/;
@@ -533,6 +532,9 @@ function initCustomerForm() {
     }
 
     async function processOrder() {
+        // Set submitting flag to prevent duplicates
+        isSubmitting = true;
+        
         const formData = new FormData(customerForm);
         const orderData = {
             name: `${formData.get('firstName')} ${formData.get('lastName')}`,
@@ -593,9 +595,10 @@ function initCustomerForm() {
             console.error('Error submitting order:', error);
             showNotification(error.message || 'Network error. Please check your connection and try again.', 'error');
         } finally {
-            // Reset button
+            // Reset button and flag
             proceedToPaymentBtn.innerHTML = '<i class="bi bi-credit-card me-2"></i>Proceed to Payment';
             proceedToPaymentBtn.disabled = false;
+            isSubmitting = false; // Reset submitting flag
         }
     }
 }
@@ -603,5 +606,4 @@ function initCustomerForm() {
 // Initialize scroll animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
-    initCustomerForm();
 });
