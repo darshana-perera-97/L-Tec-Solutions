@@ -12,7 +12,7 @@ const whatsappClient = new WhatsAppClient();
 
 // CORS configuration for separate frontend
 const corsOptions = {
-    origin: ['http://localhost:5555', 'http://127.0.0.1:5555', 'http://localhost:5500', 'http://127.0.0.1:5500', 'file://'],
+    origin: true, // Allow all origins for now - you can restrict this later
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']

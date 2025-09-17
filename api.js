@@ -3,7 +3,7 @@
 
 // Configuration
 const API_CONFIG = {
-    BASE_URL: 'http://localhost:3000/api', // Backend server URL
+    BASE_URL: 'http://69.197.187.24:5555/api', // Backend server URL
     TIMEOUT: 10000, // 10 seconds timeout
     RETRY_ATTEMPTS: 3
 };
